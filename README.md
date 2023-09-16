@@ -1,2 +1,2 @@
-# spring-database-connection
+# SpringDatabaseConnection
 database connection example
