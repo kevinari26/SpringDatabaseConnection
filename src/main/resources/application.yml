@@ -1,0 +1,30 @@
+server:
+  port: 8219
+
+spring:
+  # cloud config (application name dan profiles akan menentukan file properties yang digunakan)
+  application:
+    name: SpringDatabaseConnection
+  profiles:
+    active: development
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_temp?useSSL=false&serverTimezone=Asia/Jakarta&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    hibernate:
+      #      Hibernate ddl auto (create, create-drop, validate, update, none)
+      #      create = drop table, buat baru
+      #      create-drop = drop tabel, buat baru, drop tabel jika close session
+      #      validate = validasi db, kalau error langsung stop
+      #      update = update db kalau ada perubahan
+      ddl-auto: update
+  #    hibernate.format_sql: true
+  #    hibernate.id.new_generator_mappings: true
+  #    hibernate.cache.use_second_level_cache: false
+  #    hibernate.cache.use_query_cache: false
+  #    hibernate.generate_statistics: true
+
