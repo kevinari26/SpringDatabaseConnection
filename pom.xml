@@ -30,14 +30,9 @@
 		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -98,36 +93,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
-<!--			<plugin>-->
-<!--				<groupId>org.codehaus.mojo</groupId>-->
-<!--				<artifactId>jaxb2-maven-plugin</artifactId>-->
-<!--				<version>2.5.0</version>-->
-<!--				<executions>-->
-<!--					&lt;!&ndash; generate .xsd from java files &ndash;&gt;-->
-<!--					<execution>-->
-<!--						<id>schemagen</id>-->
-<!--						<phase>generate-sources</phase>-->
-<!--						<goals>-->
-<!--							<goal>schemagen</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<sources>-->
-<!--								<source>${xsdSourcePath}</source>-->
-<!--							</sources>-->
-<!--							<outputDirectory>${project.build.directory}/classes/xsd</outputDirectory>-->
-
-<!--							&lt;!&ndash; rename xsd &ndash;&gt;-->
-<!--							<transformSchemas>-->
-<!--								<transformSchema>-->
-<!--									<uri>${namespaceUri}</uri>-->
-<!--									<toFile>${fileName}</toFile>-->
-<!--								</transformSchema>-->
-<!--							</transformSchemas>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
 		</plugins>
 	</build>
 
