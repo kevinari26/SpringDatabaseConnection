@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Getter
 @ToString
 @JsonIgnoreProperties
-@Table(name = "tabel_test")
+@Table(name = "person")
 public class TestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

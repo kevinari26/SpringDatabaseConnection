@@ -61,12 +61,12 @@ public class AppService {
     }
     private void usingJdbcTemplate() throws JsonProcessingException {
         // execute query using jdbcTemplate
-        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM tabel_test")));
-        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM tabel_test WHERE nama='w'")));
-        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM tabel_test WHERE id<=10 or nama=\"henry v\" and nomor>900")));
-        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM tabel_test WHERE (id<=10 or nama=\"henry v\") and nomor>900")));
+        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM person")));
+        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM person WHERE nama='w'")));
+        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM person WHERE id<=10 or nama=\"henry v\" and nomor>900")));
+        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM person WHERE (id<=10 or nama=\"henry v\") and nomor>900")));
         // call view using jdbcTemplate
-        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM view_test")));
+        System.out.println(objectMapper.writeValueAsString(jdbcTemplate.queryForList("SELECT * FROM view_person")));
 
         // convert jdbc return to dto
         List<TempDto> tempDtoList = new ArrayList<>();
