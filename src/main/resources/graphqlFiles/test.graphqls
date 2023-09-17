@@ -1,0 +1,15 @@
+type Query {
+    persons: [Person]
+    personById(id: ID): Person
+    personsFilter(filterQuery: String): [Person]
+}
+
+
+type Person {
+    id: Int
+    nama: String
+    nomor: String
+    createdDate: String
+}
+
+#scalar Timestamp
