@@ -2,6 +2,7 @@ package com.kevinAri.example.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ public class CommonBean {
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		// setting pakai local timezone
 		objectMapper.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
+		// case insensitive
+        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
 		return objectMapper;
 	}

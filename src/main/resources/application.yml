@@ -1,5 +1,5 @@
 server:
-  port: 8219
+  port: 8999
 
 spring:
   application:
@@ -11,10 +11,10 @@ spring:
     url: jdbc:mysql://localhost:3306/db_temp?useSSL=false&serverTimezone=Asia/Jakarta&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
     username: root
     password: root1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: false
+    show-sql: true
     hibernate:
       #      Hibernate ddl auto (create, create-drop, validate, update, none)
       #      create = drop table, buat baru

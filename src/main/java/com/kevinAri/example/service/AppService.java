@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class AppService {
         }
         System.out.println(objectMapper.writeValueAsString(tempDtoList));
     }
-    private void usingHibernateSpecs() throws JsonProcessingException {
+    private void usingHibernateSpecs() {
         // standard JPA specification
         Specification<TestEntity> specs = (r, q, b) -> b.lessThanOrEqualTo(r.get("id"), "10");
         List<TestEntity> listEnt = testRepo.findAll(specs);
@@ -93,5 +94,25 @@ public class AppService {
         List<TestEntity> listEnt3 = testRepo.findAll(specs3);
         Specification<TestEntity> specs4 = criteriaParser.parseRecursively("id<=10 OR nama='henry v' AND nomor>900");
         List<TestEntity> listEnt4 = testRepo.findAll(specs4);
+    }
+
+    // testing transactional
+    @Transactional
+    public void execute2() {
+        try {
+            TestEntity testEntity = new TestEntity();
+            testEntity.setNomor(123);
+            testEntity.setNama("123");
+            testEntity.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+
+            TestEntity testEntity2 = new TestEntity();
+            testEntity2.setNama("123");
+            testEntity2.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+
+            testRepo.save(testEntity);
+            testRepo.save(testEntity2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

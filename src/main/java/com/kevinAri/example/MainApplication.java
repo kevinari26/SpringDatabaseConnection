@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
 public class MainApplication implements CommandLineRunner {
@@ -20,6 +18,7 @@ public class MainApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		appService.execute();
+//		appService.execute2();
 	}
 
 }
