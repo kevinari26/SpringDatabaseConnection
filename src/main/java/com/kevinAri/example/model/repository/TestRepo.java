@@ -9,12 +9,14 @@ import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Repository
 @Configurable
 public interface TestRepo extends JpaRepository<TestEntity, Long>, JpaSpecificationExecutor<TestEntity> {
     List<TestEntity> findByNama(String nama);
+    List<TestEntity> findByNamaIn(Set<String> setNama);
 
     // JPQL
     @Query("SELECT e FROM TestEntity e WHERE e.id = ?1")

@@ -14,7 +14,7 @@ spring:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
+    show-sql: false
     hibernate:
       #      Hibernate ddl auto (create, create-drop, validate, update, none)
       #      create = drop table, buat baru

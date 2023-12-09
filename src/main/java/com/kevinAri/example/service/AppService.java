@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -42,8 +39,8 @@ public class AppService {
     public void execute() {
         try {
             usingHibernate();
-            usingJdbcTemplate();
-            usingHibernateSpecs();
+//            usingJdbcTemplate();
+//            usingHibernateSpecs();
 
             System.out.println();
         } catch (Exception e) {
@@ -52,9 +49,14 @@ public class AppService {
     }
 
     private void usingHibernate() throws JsonProcessingException {
+        Set<String> setName = new HashSet<>();
+        setName.add("kevin");
+        setName.add("w");
+        setName.add("w");
         // execute query using hibernate
         System.out.println(objectMapper.writeValueAsString(testRepo.findAll()));
         System.out.println(objectMapper.writeValueAsString(testRepo.findByNama("w")));
+        System.out.println(objectMapper.writeValueAsString(testRepo.findByNamaIn(setName)));
         System.out.println(objectMapper.writeValueAsString(testRepo.findByTableIdJpql(1L)));
         System.out.println(objectMapper.writeValueAsString(testRepo.findByTableIdNative(1L)));
         // call stored procedure using hibernate
