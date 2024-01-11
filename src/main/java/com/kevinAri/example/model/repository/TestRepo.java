@@ -21,6 +21,9 @@ public interface TestRepo extends JpaRepository<TestEntity, Long>, JpaSpecificat
     // JPQL
     @Query("SELECT e FROM TestEntity e WHERE e.id = ?1")
     TestEntity findByTableIdJpql(Long id);
+//    @Query("SELECT e FROM TestEntity e WHERE e.id in (?1)")
+    @Query("SELECT e FROM TestEntity e WHERE e.id in (:id)")
+    List<TestEntity> findByTableIdInJpql(List<Long> id);
     // Native
     @Query(value = "SELECT * FROM tabel_test t WHERE t.id = ?1", nativeQuery = true)
     TestEntity findByTableIdNative(Long id);

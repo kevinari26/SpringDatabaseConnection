@@ -58,6 +58,7 @@ public class AppService {
         System.out.println(objectMapper.writeValueAsString(testRepo.findByNama("w")));
         System.out.println(objectMapper.writeValueAsString(testRepo.findByNamaIn(setName)));
         System.out.println(objectMapper.writeValueAsString(testRepo.findByTableIdJpql(1L)));
+        System.out.println(objectMapper.writeValueAsString(testRepo.findByTableIdInJpql(Arrays.asList(1L, 2L))));
         System.out.println(objectMapper.writeValueAsString(testRepo.findByTableIdNative(1L)));
         // call stored procedure using hibernate
         System.out.println(testRepo.concatNumberAndString(1, " randomString"));
