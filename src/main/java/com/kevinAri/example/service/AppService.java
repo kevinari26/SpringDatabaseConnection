@@ -9,6 +9,8 @@ import com.kevinAri.example.util.CriteriaParser;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -62,6 +64,11 @@ public class AppService {
         System.out.println(objectMapper.writeValueAsString(testRepo.findByTableIdNative(1L)));
         // call stored procedure using hibernate
         System.out.println(testRepo.concatNumberAndString(1, " randomString"));
+        // test sort and pageable
+        System.out.println(objectMapper.writeValueAsString(testRepo.findByNomorGreaterThan(100,
+                Sort.by(Sort.Direction.ASC, "createdDate", "nama"))));
+        System.out.println(objectMapper.writeValueAsString(testRepo.findByNomorGreaterThan(100,
+                PageRequest.of(0, 2, Sort.by(Sort.Direction.ASC, "createdDate", "nama")))));
     }
     private void usingJdbcTemplate() throws JsonProcessingException {
         // execute query using jdbcTemplate

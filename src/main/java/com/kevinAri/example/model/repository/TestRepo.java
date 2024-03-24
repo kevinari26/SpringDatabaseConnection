@@ -2,6 +2,8 @@ package com.kevinAri.example.model.repository;
 
 import com.kevinAri.example.model.entity.TestEntity;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +19,8 @@ import java.util.Set;
 public interface TestRepo extends JpaRepository<TestEntity, Long>, JpaSpecificationExecutor<TestEntity> {
     List<TestEntity> findByNama(String nama);
     List<TestEntity> findByNamaIn(Set<String> setNama);
+    List<TestEntity> findByNomorGreaterThan(Integer nomorGreaterThan, Sort sort);
+    List<TestEntity> findByNomorGreaterThan(Integer nomorGreaterThan, Pageable pageable);
 
     // JPQL
     @Query("SELECT e FROM TestEntity e WHERE e.id = ?1")
