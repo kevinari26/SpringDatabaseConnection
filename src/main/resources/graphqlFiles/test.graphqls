@@ -1,14 +1,14 @@
 type Query {
-    persons: [Person]
-    personById(id: ID): Person
-    personsFilter(filterQuery: String): [Person]
+    listTableTest: [TableTest]
+    tableTestById(id: ID): TableTest
+    tableTestFilter(filterQuery: String): [TableTest]
 }
 
 
-type Person {
-    id: Int
-    nama: String
-    nomor: String
+type TableTest {
+    tableTestId: String
+    name: String
+    number: Int
     createdDate: String
 }
 

@@ -1,8 +1,9 @@
 package com.kevinAri.example.controller;
 
-import com.kevinAri.example.model.entity.TestEntity;
-import com.kevinAri.example.model.repository.TestRepo;
+import com.kevinAri.example.model.entity.TableTestEntity;
+import com.kevinAri.example.model.repository.TableTestRepo;
 import com.kevinAri.example.service.AppService;
+import com.kevinAri.example.service.GraphQLService;
 import com.kevinAri.example.util.CriteriaParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -24,55 +25,56 @@ import java.util.List;
 public class GraphQLController {
     // API GraphQL
     @Autowired
-    private TestRepo repo;
+    private TableTestRepo repo;
 
     // payload example
     /*
     {
-      persons {
-        id,
-        nama
+      listTableTest {
+        tableTestId,
+        name
       }
     }
     {
-      personById(id:1) {
-        id,
-        nama
+      tableTestById(id:2){
+        tableTestId,
+        name
       }
     }
     {
-      personsFilter(filterQuery:"nomor>900 AND id<=10 OR nama=henry v") {
-        id,
-        nama
+      tableTestFilter(filterQuery:"number>900 AND tableTestId<=10 OR name=henry v") {
+        tableTestId,
+        name,
+        number
       }
     }
     */
-    @QueryMapping
-    public List<TestEntity> persons () {
+    @QueryMapping(name = "listTableTest")
+    public List<TableTestEntity> listTableTest () {
         return repo.findAll();
     }
 
-    @QueryMapping
-    public Object personById (@Argument Long id) {
+    @QueryMapping(name = "tableTestById")
+    public Object tableTestById (@Argument String id) {
         return repo.findById(id);
     }
 
-    @QueryMapping
-    public List<TestEntity> personsFilter (@Argument String filterQuery) {
-        CriteriaParser<TestEntity> critParser = new CriteriaParser<>();
+    @QueryMapping(name = "tableTestFilter")
+    public List<TableTestEntity> tableTestFilter (@Argument String filterQuery) {
+        CriteriaParser<TableTestEntity> critParser = new CriteriaParser<>();
         critParser.setDateTimeArr(Collections.singletonList("createdDate"));
-        Specification<TestEntity> specs = critParser.parseRecursively(filterQuery);
+        Specification<TableTestEntity> specs = critParser.parseRecursively(filterQuery);
         return repo.findAll(specs);
     }
 
 
     @Autowired
-    AppService appService;
+    GraphQLService graphQLService;
 
     @GetMapping(value = "/test-transactional", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object hello() {
         try {
-            appService.execute2();
+            graphQLService.testTransactional();
             return ResponseEntity.status(HttpStatus.OK)
                     .body("ok");
         } catch (Exception e) {
